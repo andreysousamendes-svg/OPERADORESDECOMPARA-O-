@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade Prática - Comparadores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100px;
+            padding: 4px;
+            text-align: center;
+        }
+        button {
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Praticando: Operadores de Comparação</h2>
+
+    <table>
+        <!-- Linha do operador == -->
+        <tr>
+            <td><input type="text" id="v1_eq"></td>
+            <td><strong>==</strong></td>
+            <td><input type="text" id="v2_eq"></td>
+            <td><button onclick="comparar('eq', '==')">Comparar</button></td>
+        </tr>
+        <!-- Linha do operador != -->
+        <tr>
+            <td><input type="text" id="v1_dif"></td>
+            <td><strong>!=</strong></td>
+            <td><input type="text" id="v2_dif"></td>
+            <td><button onclick="comparar('dif', '!=')">Comparar</button></td>
+        </tr>
+        <!-- Linha do operador > -->
+        <tr>
+            <td><input type="text" id="v1_maior"></td>
+            <td><strong>&gt;</strong></td>
+            <td><input type="text" id="v2_maior"></td>
+            <td><button onclick="comparar('maior', '>')">Comparar</button></td>
+        </tr>
+        <!-- Linha do operador >= -->
+        <tr>
+            <td><input type="text" id="v1_maior_ig"></td>
+            <td><strong>&gt;=</strong></td>
+            <td><input type="text" id="v2_maior_ig"></td>
+            <td><button onclick="comparar('maior_ig', '>=')">Comparar</button></td>
+        </tr>
+        <!-- Linha do operador < -->
+        <tr>
+            <td><input type="text" id="v1_menor"></td>
+            <td><strong>&lt;</strong></td>
+            <td><input type="text" id="v2_menor"></td>
+            <td><button onclick="comparar('menor', '<')">Comparar</button></td>
+        </tr>
+        <!-- Linha do operador <= -->
+        <tr>
+            <td><input type="text" id="v1_menor_ig"></td>
+            <td><strong>&lt;=</strong></td>
+            <td><input type="text" id="v2_menor_ig"></td>
+            <td><button onclick="comparar('menor_ig', '<=')">Comparar</button></td>
+        </tr>
+    </table>
+
+    <script>
+        function comparar(idSufixo, operador) {
+            // Obtém os valores dos inputs baseando-se no sufixo da linha
+            let valor1Raw = document.getElementById('v1_' + idSufixo).value;
+            let valor2Raw = document.getElementById('v2_' + idSufixo).value;
+
+            // Converte para número se forem puramente numéricos, mantendo string caso contrário
+            let valor1 = isNaN(valor1Raw) || valor1Raw.trim() === "" ? valor1Raw : Number(valor1Raw);
+            let valor2 = isNaN(valor2Raw) || valor2Raw.trim() === "" ? valor2Raw : Number(valor2Raw);
+
+            let resultado = false;
+
+            // Avaliação de cada operador lógico baseado na string correspondente
+            switch(operador) {
+                case '==':
+                    resultado = (valor1 == valor2);
+                    break;
+                case '!=':
+                    resultado = (valor1 != valor2);
+                    break;
+                case '>':
+                    resultado = (valor1 > valor2);
+                    break;
+                case '>=':
+                    resultado = (valor1 >= valor2);
+                    break;
+                case '<':
+                    resultado = (valor1 < valor2);
+                    break;
+                case '<=':
+                    resultado = (valor1 <= valor2);
+                    break;
+            }
+
+            // Exibe o alerta formatado em letras maiúsculas conforme a regra
+            if (resultado) {
+                alert("VERDADEIRO");
+            } else {
+                alert("FALSO");
+            }
+        }
+    </script>
+
+</body>
+</html>
